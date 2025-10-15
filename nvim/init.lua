@@ -674,7 +674,19 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = 'workspace',
+                typeCheckingMode = 'basic', -- or 'off' if you want fewer errors
+              },
+              pythonPath = vim.fn.exepath 'python', -- ensures pyright uses your current Python
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -895,7 +907,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'retrobox'
     end,
   },
 
@@ -984,7 +996,7 @@ require('lazy').setup({
   require 'custom.plugins.telescope-file-browser',
 
   vim.keymap.set('n', '<leader>a', '<Cmd>e #<CR>', { desc = 'Switch to prev buffer' }),
-  vim.keymap.set('n', '<leader>A', '<Cmd>botright sf #<CR>', { desc = 'Switch and split to prev buffer' }),
+  vim.keymap.set('n', '<leader>A', '<Cmd>:rightbelow sf #<CR> <C-w>L', { desc = 'Switch and split to prev buffer' }),
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
