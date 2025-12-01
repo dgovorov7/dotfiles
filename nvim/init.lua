@@ -20,11 +20,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require 'config.lazy' -- bootstrap lazy.nvim
 require('lazy').setup({
 
-  change_detection = {
-    -- automatically check for config file changes and reload the ui
-    enabled = true,
-    notify = true, -- get a notification when changes are found
-  },
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
   -- See `:help gitsigns` to understand what the configuration keys do
@@ -43,6 +38,7 @@ require('lazy').setup({
   require 'plugins.mini',
   require 'plugins.nvim-treesitter',
   require 'plugins.render-markdown',
+  require 'plugins.oil',
 
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   -- require 'kickstart.plugins.debug',
@@ -63,6 +59,11 @@ require('lazy').setup({
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
 }, {
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = true,
+    notify = true, -- get a notification when changes are found
+  },
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
