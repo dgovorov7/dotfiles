@@ -2,7 +2,7 @@ require 'options'
 
 require 'key-mappings'
 
-vim.cmd.colorscheme 'retrobox'
+-- vim.cmd.colorscheme 'retrobox'
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -30,7 +30,7 @@ require('lazy').setup({
   require 'plugins.lsp',
   require 'plugins.conform',
   require 'plugins.blink',
-  -- require 'theme',
+  require 'theme',
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -39,6 +39,7 @@ require('lazy').setup({
   require 'plugins.nvim-treesitter',
   require 'plugins.render-markdown',
   require 'plugins.oil',
+  require 'plugins.vim-tmux-navigator',
 
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   -- require 'kickstart.plugins.debug',
