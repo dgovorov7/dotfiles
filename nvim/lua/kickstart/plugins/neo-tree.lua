@@ -16,6 +16,7 @@ return {
   opts = {
     close_if_last_window = false,
     filesystem = {
+      hijack_netrw_behavior = 'disabled',
       window = {
         mappings = {
           ['\\'] = 'close_window',
