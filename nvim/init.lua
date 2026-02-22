@@ -40,7 +40,7 @@ require('lazy').setup({
   require 'plugins.render-markdown',
   require 'plugins.oil',
   require 'plugins.vim-tmux-navigator',
-
+  require 'plugins.roslyn',
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',

@@ -1,9 +1,2 @@
-
-WSL2's inotify limit:
-
-need to edit .wslconfig with 
-```
 [wsl2]
 kernelCommandLine = sysctl.fs.inotify.max_user_instances=524288
-
-```
