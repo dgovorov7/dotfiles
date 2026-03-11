@@ -8,7 +8,7 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 -- tabs
-
+vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
