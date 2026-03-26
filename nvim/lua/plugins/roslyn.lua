@@ -5,12 +5,35 @@ vim.filetype.add {
   },
 }
 
+-- -- Disable expensive LSP features for razor files to prevent slowness
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--   pattern = { '*.razor', '*.cshtml' },
+--   callback = function(args)
+--     local bufnr = args.buf
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     -- Inlay hints are expensive in mixed HTML/C# razor files
+--     vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+--     -- Semantic tokens are the main perf killer: Roslyn re-sends the full token
+--     -- list on every keystroke for razor files (cross-language analysis is costly)
+--     if client then
+--       vim.lsp.semantic_tokens.stop(bufnr, client.id)
+--     end
+--     -- Don't recompute diagnostics on every keystroke
+--     vim.diagnostic.config { update_in_insert = false }
+--     -- Disable signature help: fires textDocument/signatureHelp on every keystroke inside tags
+--     vim.lsp.handlers['textDocument/signatureHelp'] = function() end
+--   end,
+-- })
+
 return {
   'seblyng/roslyn.nvim',
-  ft = { 'cs', 'razor', 'cshtml' },
+  ft = { 'cs', 'razor', 'cshtml', 'vb' },
   opts = {
-    broad_search = false,
+    broad_search = true,
     config = {
+      -- Batch text change notifications: without this, every keystroke triggers
+      -- a full re-analysis of the mixed HTML/C# document on the Roslyn server
+      -- flags = { debounce_text_changes = 300 },
       settings = {
         ['csharp|inlay_hints'] = {
           -- csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -38,6 +61,6 @@ return {
         },
       },
     },
-    -- filewatching = 'off',
+    filewatching = false,
   },
 }

@@ -26,7 +26,7 @@ require('lazy').setup({
   require 'plugins.gitsigns',
   require 'plugins.which-key',
   require 'plugins.telescope',
-  require 'plugins.telescope-file-browser',
+  -- require 'plugins.telescope-file-browser',
   require 'plugins.lsp',
   require 'plugins.conform',
   require 'plugins.blink',
@@ -41,8 +41,9 @@ require('lazy').setup({
   require 'plugins.oil',
   require 'plugins.vim-tmux-navigator',
   require 'plugins.roslyn',
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  -- require 'kickstart.plugins.debug',
+  require 'plugins.code-companion',
+
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',

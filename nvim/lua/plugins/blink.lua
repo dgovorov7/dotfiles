@@ -57,6 +57,8 @@ return { -- Autocompletion
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
       preset = 'default',
+      ['<C-x>'] = { 'show', 'show_documentation', 'hide_documentation' },
+      ['<C-Space>'] = {},
 
       -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
       --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -75,7 +77,17 @@ return { -- Autocompletion
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev' },
+      -- default = { 'lsp', 'path', 'snippets', 'lazydev' },
+      -- Exclude LSP source for razor: Roslyn returns massive completion lists
+      -- on every keystroke causing UI hangs. Use <C-Space> to trigger manually.
+      default = function()
+        local ft = vim.bo.filetype
+        if ft == 'razor' or ft == 'cshtml' then
+          return { 'path', 'snippets' }
+        end
+        return { 'lsp', 'path', 'snippets', 'lazydev' }
+      end,
+
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
       },

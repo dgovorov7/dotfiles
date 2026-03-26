@@ -136,6 +136,24 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    -- C# / Blazor Server config
+    dap.configurations.cs = {
+      {
+        type = 'coreclr',
+        name = 'Attach to process',
+        request = 'attach',
+        processId = require('dap.utils').pick_process,
+      },
+      {
+        type = 'coreclr',
+        name = 'Launch',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+        end,
+      },
+    }
+
     -- Install golang specific config
     require('dap-go').setup {
       delve = {
